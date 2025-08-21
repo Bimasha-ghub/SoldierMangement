@@ -1,0 +1,55 @@
+.gradient-custom-2 {
+    background: linear-gradient(to right, #ee7724,#14a932);
+}
+
+.login{
+    background-color: #ece9e9;
+}
+    
+@media (min-width: 769px) {
+    .gradient-custom-2 {
+        border-top-right-radius: .3rem;
+        border-bottom-right-radius: .3rem;
+    }
+}
+
+#Username {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 17px;
+    font-size: 16px;
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+#password {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 17px;
+    font-size: 16px;
+    background: rgb(255, 255, 255);
+    color: black;
+}
+
+/* Registration Form */
+@media (min-width: 1025px) {
+    .h-custom {
+    height: 100vh !important;
+    }
+}
+
+.regform{
+    background: linear-gradient(#9cd769,#30b730, #088724);
+}
+#error{
+    color: red;
+    font-weight: bold;
+}
+.abc{
+    height: 400px;
+    width: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -1,0 +1,255 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Recoleta Regular';
+        }
+
+        body{
+            background-color: #0a0a0a;
+        }
+
+        .overlay{
+            background-color: rgba(0, 0, 0, 0.7);
+            min-height: 100vh;
+        }
+
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: rgba(20, 20, 20, 0.8);
+            border-bottom: hidden;
+        }
+
+        .logoTxt{
+            font-size: 28px;
+            font-weight: bold;
+            color: #8B0000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links{
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li{
+            margin-left: 30px;
+        }
+
+        .nav-links a{
+            color: #e0e0e0;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover{
+            color: #8B0000;
+        }
+
+        .head{
+            font-size: 30px;
+            color: darkorange;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bolder;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero{
+            background-color: white;
+        }
+
+        .hero p{
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .img{
+            width: 750;
+            height: 939;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+        }
+
+        /*animation for map icon*/
+        #mapIcon{
+            width: auto;
+            height: auto;
+            background-size: cover;
+            margin-left: 200px;
+            margin-top: 80px;
+            position: relative;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce{
+            0%{
+                transform: translateY(0);
+            }
+            50%{
+                transform: translateY(-10px);
+            }
+            100%{
+                transform: translateY(0);
+            }
+        }
+
+        /*animation for telephone icon*/
+        #teleIcon{
+            width: auto;
+            height: auto;
+            background-size: cover;
+            margin-left: 200px;
+            margin-top: 80px;
+            position: relative;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake{
+            0%{
+                transform: translateX(0);
+            }
+            25%{
+                transform: translateX(-5px);
+            }
+            50%{
+                transform: translateX(5px);
+            }
+            75%{
+                transform: translateX(-5px);
+            }
+            100%{
+                transform: translateX(0);
+            }
+        }
+
+        .col-lg{
+            margin-top: 30px;
+        }
+
+        .footer-text{
+            font-family: 'Arial', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+
+        .footer-text:hover{
+            color: greenyellow;
+        }
+
+        .logoImg{
+            width: 120px;
+            height: 120px;
+            margin-left: 30px;
+        }
+
+        #fbIcon{
+            font-size: 64px;
+            color: blue;
+        }
+
+        #ytIcon{
+            font-size: 64px;
+            color: red;
+            margin-left: 30px;
+        }
+
+        #twitterXIcon{
+            width: 64px;
+            height: 64px;
+            margin-left: 30px;
+            margin-bottom: 28px;
+        }
+
+        #logoImg{
+            width: 180px;
+            height: 180px;
+            margin-left: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <nav>
+            <div class="logoTxt">Military E-System</div>
+            <ul class="nav-links">
+                <li><a href="home.html">HOME</a></li>
+                <li><a href="">REGIMENT</a></li>
+                <li><a href="">RANKS</a></li>
+            </ul>
+        </nav>
+
+        <div class="hero">
+            <div class="row">
+                <div class="col-lg">
+                   <img src="photo/map.png" id="mapIcon">
+                   <h1 class="head">ADDRESS</h1>
+                   <br>
+                   <p>Army Headquarters,</p>
+                   <br>
+                   <p>Defence Headquarters Complex,</p>
+                   <br>
+                   <p>Akuregoda Road,</p> 
+                   <br>
+                   <p>Battaramulla.</p>
+                   <br>
+
+                   <img src="photo/telephone.png" id="teleIcon">
+                   <h1 class="head">TELE</h1>
+                   <br>
+                   <p>+94112432682</p>
+                   <br>
+                   <p>+94766907749</p>
+                </div>
+                <div class="col-lg">
+                    <img src="photo/img1.jpg" class="img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-lg">
+                <img src="photo/logo.png" id="logoImg"> 
+            </div>
+            <div class="col-lg">
+                <p class="footer-text">Army Headquarters,</p>
+                <p class="footer-text">Defence Headquarters Complex,</p>
+                <p class="footer-text">Akuregoda Road,</p>
+                <p class="footer-text">Battaramulla.</p>
+            </div>
+            <div class="col-lg">
+                <p class="footer-text">About Us</p>
+                <p class="footer-text">Contact Us</p>
+                <p class="footer-text">Privacy Policy</p>
+                <p class="footer-text">Email</p>
+            </div>
+            <div class="col-lg">
+                <a href=""><i class="fa fa-facebook-f" id="fbIcon"></i></a>
+                <a href=""><i class="fa fa-youtube-play" id="ytIcon"></i></a>
+                <a href=""><img src="photo/twitter.ico" id="twitterXIcon"></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Service Report</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #card-report {
+            width: 800px;
+            height: auto;
+            border: 4px solid black;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            padding: 30px;
+        }
+
+        #report-title {
+            font-family: 'Arial', sans-serif;
+            font-size: 48px;
+            color: maroon;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        
+        .search-container input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 0 4px 4px 0;
+            margin-left: -1px; 
+            width: 300px;
+            font-size: 16px;
+        }
+        
+        .search-container button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+            border-radius: 4px 0 0 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .search-container button:hover {
+            background-color: #45a049;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            color: maroon;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid maroon;
+            padding-bottom: 5px;
+        }
+        
+        .report-section {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .label {
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 140px;
+            color: #333;
+        }
+        
+        .report-data {
+            color: #555;
+            flex: 1;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .btn-download {
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn-download:hover {
+            background-color: #c82333;
+        }
+        
+        .no-data {
+            text-align: center;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .personal-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .status-active {
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .status-inactive {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <div class="card" id="card-report">
+                <div class="card-body">
+                    <h1 id="report-title">Complete Service Report</h1>
+                    
+                    <div class="search-container">
+                        <button type="button" id="btnsearch">Search</button>
+                        <input type="text" id="txtAid" class="form-control" 
+                               placeholder="Enter Army ID" required />
+                    </div>
+                    
+                    <div id="report-content" style="display: none;">
+                        <!-- Personal Information -->
+                        <h3 class="section-title">Personal Information</h3>
+                        <div class="personal-info">
+                            <div class="report-section">
+                                <span class="label">Full Name:</span> 
+                                <span class="report-data" id="fullName">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Army ID:</span> 
+                                <span class="report-data" id="armyId">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">NIC:</span> 
+                                <span class="report-data" id="nic">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Date of Birth:</span> 
+                                <span class="report-data" id="dob">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Gender:</span> 
+                                <span class="report-data" id="gender">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Address:</span> 
+                                <span class="report-data" id="address">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Email:</span> 
+                                <span class="report-data" id="email">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Contact:</span> 
+                                <span class="report-data" id="contact">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">RS Division:</span> 
+                                <span class="report-data" id="rsDivition">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Marital Status:</span> 
+                                <span class="report-data" id="maritalStatus">-</span>
+                            </div>
+                            
+                            <div class="report-section">
+                                <span class="label">Blood Group:</span> 
+                                <span class="report-data" id="bGroup">-</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Current Service Information -->
+                        <h3 class="section-title">Current Service Information</h3>
+                        <div class="report-section">
+                            <span class="label">Regiment:</span> 
+                            <span class="report-data" id="regiment">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Battalion:</span> 
+                            <span class="report-data" id="battalion">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Current Position:</span> 
+                            <span class="report-data" id="position">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Current Rank:</span> 
+                            <span class="report-data" id="rank">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Join Date:</span> 
+                            <span class="report-data" id="joinDate">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Assignment Date:</span> 
+                            <span class="report-data" id="assignDate">-</span>
+                        </div>
+                        
+                        <div class="report-section">
+                            <span class="label">Status:</span> 
+                            <span class="report-data" id="status">-</span>
+                        </div>
+                        
+                        <!-- Position History -->
+                        <h3 class="section-title">Position History</h3>
+                        <table class="data-table" id="position-table">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Service Period</th>
+                                </tr>
+                            </thead>
+                            <tbody id="position-data">
+                                <tr><td colspan="4" class="no-data">No position history found</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <!-- Education History -->
+                        <h3 class="section-title">Education History</h3>
+                        <table class="data-table" id="education-table">
+                            <thead>
+                                <tr>
+                                    <th>Qualification</th>
+                                </tr>
+                            </thead>
+                            <tbody id="education-data">
+                                <tr><td class="no-data">No education records found</td></tr>
+                            </tbody>
+                        </table>
+                        
+                        <button type="button" class="btn-download" id="btnDownload">Download Complete PDF Report</button>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+
+    <script>
+       $(document).ready(function() {
+    // Search button click handler
+    $('#btnsearch').click(function() {
+        const armyId = $('#txtAid').val().trim();
+        if (!armyId) {
+            alert('Please enter an Army ID');
+            return;
+        }
+        
+        fetchSoldierData(armyId);
+    });
+    
+    // Also search when Enter key is pressed in the input field
+    $('#txtAid').keypress(function(e) {
+        if (e.which === 13) { // Enter key
+            $('#btnsearch').click();
+        }
+    });
+    
+    // Download PDF button click handler
+    $('#btnDownload').click(function() {
+        exportToPDF();
+    });
+    
+    function fetchSoldierData(armyId) {
+        // Show loading message
+       // alert('Searching for Army ID: ' + armyId);
+        
+        $.ajax({
+            url: 'getSoldierData.php',
+            type: 'POST',
+            data: { army_id: armyId },
+            dataType: 'json',
+            timeout: 10000,
+            success: function(response) {
+                console.log('Response received:', response);
+                if (response.error) {
+                    alert('Error: ' + response.error);
+                    if (response.debug_post) {
+                        console.log('POST data received by server:', response.debug_post);
+                    }
+                    $('#report-content').hide();
+                    return;
+                }
+                
+                // Update personal details
+                const details = response.details;
+                $('#armyId').text(armyId);
+                $('#fullName').text(details.fullName || 'N/A');
+                $('#nic').text(details.nic || 'N/A');
+                $('#dob').text(details.dob || 'N/A');
+                $('#gender').text(details.gender || 'N/A');
+                $('#address').text(details.address || 'N/A');
+                $('#email').text(details.email || 'N/A');
+                $('#contact').text(details.contact || 'N/A');
+                $('#rsDivition').text(details.rsDivition || 'N/A');
+                $('#maritalStatus').text(details.maritalStatus || 'N/A');
+                $('#bGroup').text(details.bGroup || 'N/A');
+                $('#regiment').text(details.regiment_id || 'N/A');
+                $('#battalion').text(details.battalion_id || 'N/A');
+                $('#position').text(details.position || 'N/A');
+                $('#rank').text(details.rank || 'N/A');
+                $('#joinDate').text(details.joinDate || 'N/A');
+                $('#assignDate').text(details.assignDate || 'N/A');
+                
+                // Update status with color coding
+                const status = details.status || 'N/A';
+                const statusElement = $('#status');
+                statusElement.text(status);
+                if (status.toLowerCase() === 'active') {
+                    statusElement.addClass('status-active').removeClass('status-inactive');
+                } else {
+                    statusElement.addClass('status-inactive').removeClass('status-active');
+                }
+                
+                // Update position history table
+                const positionTable = $('#position-data');
+                positionTable.empty();
+                
+                if (response.positions.length === 0) {
+                    positionTable.append('<tr><td colspan="4" class="no-data">No position history found</td></tr>');
+                } else {
+                    response.positions.forEach(pos => {
+                        const endDate = pos.enddate && pos.enddate !== 'Current' ? pos.enddate : 'Current';
+                        positionTable.append(`
+                            <tr>
+                                <td>${pos.position || 'N/A'}</td>
+                                <td>${pos.startdate || 'N/A'}</td>
+                                <td>${endDate}</td>
+                                <td>${pos.serviceperiod || 'N/A'}</td>
+                            </tr>
+                        `);
+                    });
+                }
+                
+                // Update education table
+                const educationTable = $('#education-data');
+                educationTable.empty();
+                
+                if (response.education.length === 0) {
+                    educationTable.append('<tr><td class="no-data">No education records found</td></tr>');
+                } else {
+                    response.education.forEach(edu => {
+                        educationTable.append(`
+                            <tr>
+                                <td>${edu.education || 'N/A'}</td>
+                            </tr>
+                        `);
+                    });
+                }
+                
+                // Show the report content
+                $('#report-content').show();
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error:', {
+                    status: status,
+                    error: error,
+                    responseText: xhr.responseText
+                });
+                
+                let errorMsg = 'Error fetching soldier data: ' + error;
+                if (xhr.responseText) {
+                    errorMsg += '\nResponse: ' + xhr.responseText;
+                }
+                alert(errorMsg);
+                $('#report-content').hide();
+            }
+        });
+    }
+    
+    function exportToPDF() {
+        try {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+            let yPos = 20;
+            
+            // Title
+            doc.setFontSize(20);
+            doc.setFont(undefined, 'bold');
+            doc.text("Complete Military Service Report", 20, yPos);
+            yPos += 15;
+            
+            // Personal Information Section
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text("Personal Information", 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            
+            const personalFields = [
+                ['Full Name', $('#fullName').text()],
+                ['Army ID', $('#armyId').text()],
+                ['NIC', $('#nic').text()],
+                ['Date of Birth', $('#dob').text()],
+                ['Gender', $('#gender').text()],
+                ['Address', $('#address').text()],
+                ['Email', $('#email').text()],
+                ['Contact', $('#contact').text()],
+                ['RS Division', $('#rsDivition').text()],
+                ['Marital Status', $('#maritalStatus').text()],
+                ['Blood Group', $('#bGroup').text()]
+            ];
+            
+            personalFields.forEach(field => {
+                if (yPos > 270) { // Check if we need a new page
+                    doc.addPage();
+                    yPos = 20;
+                }
+                doc.text(`${field[0]}: ${field[1]}`, 20, yPos);
+                yPos += 7;
+            });
+            
+            yPos += 10;
+            
+            // Current Service Information
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text("Current Service Information", 20, yPos);
+            yPos += 10;
+            
+            doc.setFontSize(12);
+            doc.setFont(undefined, 'normal');
+            
+            const serviceFields = [
+                ['Regiment', $('#regiment').text()],
+                ['Battalion', $('#battalion').text()],
+                ['Current Position', $('#position').text()],
+                ['Current Rank', $('#rank').text()],
+                ['Join Date', $('#joinDate').text()],
+                ['Assignment Date', $('#assignDate').text()],
+                ['Status', $('#status').text()]
+            ];
+            
+            serviceFields.forEach(field => {
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+                doc.text(`${field[0]}: ${field[1]}`, 20, yPos);
+                yPos += 7;
+            });
+            
+            // Position History (New Page)
+            doc.addPage();
+            yPos = 20;
+            
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text("Position History", 20, yPos);
+            yPos += 15;
+            
+            // Position table headers
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text("Position", 20, yPos);
+            doc.text("Start Date", 80, yPos);
+            doc.text("End Date", 120, yPos);
+            doc.text("Service Period", 160, yPos);
+            yPos += 5;
+            
+            // Draw line under headers
+            doc.line(20, yPos, 190, yPos);
+            yPos += 5;
+            
+            // Position table rows
+            doc.setFont(undefined, 'normal');
+            $('#position-table tbody tr').each(function() {
+                const cols = $(this).find('td');
+                if (cols.length === 4) {
+                    if (yPos > 270) {
+                        doc.addPage();
+                        yPos = 20;
+                    }
+                    doc.text(cols.eq(0).text().substring(0, 25), 20, yPos);
+                    doc.text(cols.eq(1).text(), 80, yPos);
+                    doc.text(cols.eq(2).text(), 120, yPos);
+                    doc.text(cols.eq(3).text().substring(0, 15), 160, yPos);
+                    yPos += 7;
+                }
+            });
+            
+            yPos += 10;
+            
+            // Education History
+            if (yPos > 250) {
+                doc.addPage();
+                yPos = 20;
+            }
+            
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text("Education History", 20, yPos);
+            yPos += 15;
+            
+            doc.setFontSize(10);
+            doc.setFont(undefined, 'bold');
+            doc.text("Qualification", 20, yPos);
+            yPos += 5;
+            
+            // Draw line under header
+            doc.line(20, yPos, 190, yPos);
+            yPos += 5;
+            
+            // Education table rows
+            doc.setFont(undefined, 'normal');
+            $('#education-table tbody tr').each(function() {
+                if (yPos > 270) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+                const qualification = $(this).find('td').eq(0).text();
+                doc.text(qualification, 20, yPos);
+                yPos += 7;
+            });
+            
+            // Save the PDF
+            const armyId = $('#armyId').text() || 'Unknown';
+            doc.save(`Complete_Service_Report_${armyId}.pdf`);
+            
+            // Show success message
+            alert('PDF downloaded successfully!');
+            
+        } catch (error) {
+            console.error('PDF Generation Error:', error);
+            alert('Error generating PDF: ' + error.message);
+        }
+    }
+});
+    </script>
+</body>
+</html>

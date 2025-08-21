@@ -1,0 +1,238 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        header{
+            background-image: url(headerbg.jpg);
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 300px;
+        }
+        
+        #sideTab{
+            position: fixed;
+            top: 50%;
+            left: 0;
+            background-color: skyblue;
+            color: black;
+            padding: 10px;
+            cursor: auto;
+            z-index: 100;
+            transform: translateY(-50%);
+            border-radius: 0 5px 5px 0;
+        }
+
+        .side-menu{
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #444;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+            z-index: 1000;
+        }
+
+        .side-menu a{
+            padding: 10px 20px;
+            display: block;
+            color: white;
+            font-family: 'Helvetica';
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .side-menu a:hover{
+            background-color: #575757;
+        }
+
+        .close-btn{
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .container{
+            margin-top: 150px;
+        }
+
+        h1{
+            color: white;
+            font-family: 'Recoleta Regular';
+            font-size: 50px;
+        }
+
+        .card{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .card:hover{
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        #card-top{
+            width: 700;
+            height: 800;
+            border-color: greenyellow;
+            border-width: 8px;
+        }
+        
+        #card-center{
+            width: 700;
+            height: 800;
+            border-color: maroon;
+            border-width: 8px;
+        }
+
+        #card-bottom{
+            width: 700;
+            height: 800;
+            border-color: green;
+            border-width: 8px;
+        }
+
+        #card1-title{
+            font-family: 'Recoleta Regular';
+            font-size: 60px;
+            color: darkblue;
+        }
+
+        #card2-title{
+            font-family: 'Recoleta Regular';
+            font-size: 60px;
+            color: darkblue;
+        }
+
+        #card3-title{
+            font-family: 'Recoleta Regular';
+            font-size: 60px;
+            color: darkblue;
+        }
+
+
+        .profile-img{
+            text-align: center;
+            width: 150;
+            height: 150;
+            border-radius: 50px;
+            object-fit: cover;
+            background-color: silver;
+        }
+
+        .label{
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+            font-family: 'Roboto';
+        }
+
+        .data{
+            font-family: 'Tahoma';
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Soldier's Portal</h1>
+        <div id="sideTab" onclick="openMenu()">☰</div>  
+        
+        <div id="sideMenu" class="side-menu">
+            <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+            <a href="home.html">Home</a>
+            <a href="">Regiment</a>
+            
+        </div>
+    </header>
+
+    <div class="container">
+       <center><div class="card" id="card-top">
+            <div class="card-body">
+                <h2 id="card1-title">Personal Info</h2>
+                <center><img src="" alt="" class="profile-img"></center>
+                <h3 id="nickname"></h3>
+                <br>
+                <label class="label">Full Name</label> <p class="data" id="full-name"></p> 
+                <br>
+                <label class="label">First Name</label> <p class="data" id="first-name"></p>
+                <br>
+                <label class="label">Birth Date</label> <p class="data" id="dob"></p>
+                <br>
+                <label class="label">Regional Secretariat Division</label> <p class="data" id="rsd"></p>
+                <br>
+                <label class="label">NIC</label> <p class="data" id="nic"></p>
+                <br>
+            </div> 
+        </div>
+        </center>
+    </div>
+    <div class="container">
+        <center><div class="card" id="card-center">
+            <div class="card-body">
+                <h2 id="card2-title">Military Info</h2>
+                <br>
+                <label class="label">Army ID</label> <p class="data" id="armyId"></p>
+                <br>
+                <label class="label">Joined Date</label> <p class="data" id="joinedDate"></p>
+                <br>
+                <label class="label">Rank</label> <p class="data" id="rank"></p>
+                <br>
+                <label class="label">Position</label> <p class="data" id="position"></p>
+                <br>
+                <label class="label">Position Assigned Date</label> <p class="data" id="assignedDate"></p>
+                <br>
+                <label class="label">Regiment</label> <p class="data" id="regiment"></p>
+                <br>
+                <label class="label">Battalion</label> <p class="data" id="battalion"></p>
+                <br>
+                <label class="label">Blood Group</label> <p class="data" id="bg"></p>
+                <br>
+                <label class="label">Educational Qualifications</label> <p class="data" id="edu"></p>
+            </div>
+        </div>
+        </center>
+    </div>
+    <div class="container">
+        <center><div class="card" id="card-bottom">
+            <div class="card-body">
+                <h2 id="card3-title">Dependents' Details</h2>
+                <br>
+                <label class="label">Mother's Name</label> <p class="data" id="mother-name"></p>
+                <br>
+                <label class="label">Mother's NIC</label> <p class="data" id="mother-nic"></p>
+                <br>
+                <label class="label">Father's Name</label> <p class="data" id="father-name"></p>
+                <br>
+                <label class="label">Father's NIC</label> <p class="data" id="father-nic"></p>
+                <br>
+                <label class="label">Spouse's Name</label> <p class="data" id="spouse-name"></p>
+                <br>
+                <label class="label">Spouse's NIC</label> <p class="data" id="spouse-id"></p> 
+                <br>
+            </div>
+        </div>
+        </center>
+    </div>
+    <script type="text/javascript">
+        function openMenu(){
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        function closeMenu(){
+            document.getElementById("sideMenu").style.width = "0";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+  <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Recoleta Regular';
+    }
+
+    body{
+      background-color: #0a0a0a;
+      color: #e0e0e0;
+      background-image: url('photo/body.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .overlay{
+      background-color: rgba(0, 0, 0, 0.7);
+      min-height: 100vh;
+    }
+
+    nav{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: rgba(20, 20, 20, 0.8);
+      border-bottom: hidden;
+    }
+
+    .logo{
+      font-size: 28px;
+      font-weight: bold;
+      color: #8B0000;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .nav-links{
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li{
+      margin-left: 30px;
+    }
+
+    .nav-links a{
+      color: #e0e0e0;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover{
+      color: #8B0000;
+    }
+
+    .hero{
+      padding: 100px 50px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero h1{
+      font-size: 48px;
+      margin-bottom: 30px;
+      text-align: center;
+      color: yellow;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .hero p{
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+
+    .login-button{
+      background-color: transparent;
+      color: white;
+      padding: 12px 30px;
+      border: 2px solid white;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
+
+    .login-button:hover{
+      background-color: #8B0000;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <nav>
+      <div class="logo">Military E-System</div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="">REGIMENTS</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li><a href="">RANKS</a></li>
+      </ul>
+    </nav>
+
+    <div class="hero">
+      <h1>Bravery Is Not The Fearless But Overcome It</h1>
+      
+      <button class="login-button" id="loginBtn" onclick="window.location.href='login.php'">LOGIN PROFILE</button>
+    </div>
+  </div>
+</body>
+</html>

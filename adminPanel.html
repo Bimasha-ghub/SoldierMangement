@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        header{
+            background-image: url('photo/snipe.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 100px 0;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        #logoImg{
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        #logo2Img{
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: 0 auto 50px;
+        }
+
+        h1{
+            font-family: 'Recoleta Regular';
+            color: white;
+            font-size: 80px;
+            font-weight: 500;
+            margin: 0 auto;
+        }
+
+        .container{
+            margin-bottom: 100px;
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            
+        }
+
+        .card{
+            width: 350px;
+            height: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border-color: darkblue;
+            margin: 0;
+        }
+
+        .card:hover{
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-width: 8px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .card-body img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .card-body h2{
+            font-family: 'Recoleta Regular';
+            font-weight: bolder;
+            color: darkblue;
+            margin: 20px 0;
+        }
+
+        .view-button{
+            background-color: transparent;
+            color: darkblue;
+            font-family: 'Arial', sans-serif;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border: 2px solid darkblue;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+        
+        .view-button:hover{
+            background-color: darkblue;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 50px 0;
+            }
+            
+            h1 {
+                font-size: 50px;
+            }
+            
+            #logoImg {
+                max-width: 200px;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 350px;
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="photo/logo.png" id="logoImg" class="img-fluid">
+        <h1>Admin Panel</h1>
+    </header>
+
+    <div class="container">
+        <img src="photo/logo2.png" id="logo2Img" class="img-fluid">
+        <div class="card-container">
+            <div class="card" id="card1">
+                <div class="card-body">
+                    <img src="photo/tank.png" id="cardImg1" class="img-fluid">
+                    <h2>Regiments</h2>
+                    <button class="view-button" onclick="window.location.href='AdminRegInsert.php'">Insert Details</button>
+                </div>
+            </div>
+            <div class="card" id="card2">
+                <div class="card-body">
+                    <img src="photo/team.png" id="cardImg2" class="img-fluid">
+                    <h2>Battalions</h2>
+                    <button class="view-button" onclick="window.location.href='AdminBattInsert.php'">Insert Details</button>
+                </div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="card" id="card3">
+                <div class="card-body">
+                    <img src="photo/military.png" id="cardImg3" class="img-fluid">
+                    <h2>Soldiers</h2>
+                    <button class="view-button"onclick="window.location.href='AdminInsert.php'">Insert Details</button>
+                </div>
+            </div>
+            <div class="card" id="card4">
+                <div class="card-body">
+                    <img src="photo/dependents.png" id="cardImg4" class="img-fluid">
+                    <h2>Dependents</h2>
+                    <button class="view-button" onclick="window.location.href='AdminDepInsert.php'">Insert Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
